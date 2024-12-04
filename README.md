@@ -11,18 +11,22 @@ Parse the provided log file to extract all IP addresses.
 Calculate the number of requests made by each IP address.
 Sort and display the results in descending order of request counts.
 Example output:
+```less
 IP Address           Request Count
 192.168.1.1          234
 203.0.113.5          187
 10.0.0.2             92
+```
 
 2) **Identify the Most Frequently Accessed Endpoint**:
 Extract the endpoints (e.g., URLs or resource paths) from the log file.
 Identify the endpoint accessed the highest number of times.
 Provide the endpoint name and its access count.
 Example output:
+```less
 Most Frequently Accessed Endpoint:
 /home (Accessed 403 times)
+```
 
 3. **Detect Suspicious Activity**:
     - Identify potential brute force login attempts by:
@@ -48,6 +52,7 @@ Most Frequently Accessed Endpoint:
 ### **Sample Log File**
 
 Here is a sample log file you will use for this assignment. Save it as `sample.log`:
+```less
 192.168.1.1 - - [03/Dec/2024:10:12:34 +0000] "GET /home HTTP/1.1" 200 512
 203.0.113.5 - - [03/Dec/2024:10:12:35 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
 10.0.0.2 - - [03/Dec/2024:10:12:36 +0000] "GET /about HTTP/1.1" 200 256
@@ -82,3 +87,4 @@ Here is a sample log file you will use for this assignment. Save it as `sample.l
 198.51.100.23 - - [03/Dec/2024:10:13:05 +0000] "GET /about HTTP/1.1" 200 256
 192.168.1.1 - - [03/Dec/2024:10:13:06 +0000] "GET /home HTTP/1.1" 200 512
 198.51.100.23 - - [03/Dec/2024:10:13:07 +0000] "POST /feedback HTTP/1.1" 200 128
+```
