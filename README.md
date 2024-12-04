@@ -1,71 +1,53 @@
-# VRV-Security-Assignment
-Log File Analysis Script
+***Log Analysis Script***
 
-Objective
-This Python script is designed to process and analyze log files, specifically focusing on tasks related to network security, such as detecting potential brute force attacks, identifying frequent access patterns, and counting requests. The script extracts relevant information from log files, processes it, and generates useful reports for cybersecurity analysis.
+**Objective**
 
-Core Functionalities
-1. Count Requests per IP Address
-The script processes the log file to extract and count the number of requests made by each IP address.
-Results are sorted and displayed in descending order, showing the IP addresses and their respective request counts.
-Example Output:
-IP Address     Request Count
-203.0.113.5         8
-198.51.100.23       8
-192.168.1.1         7
-10.0.0.2            6
-192.168.1.100       5
+The goal of this assignment is to assess your ability to write a Python script that processes log files to extract and analyze key information. This assignment evaluates your proficiency in file handling, string manipulation, and data analysis, which are essential skills for cybersecurity-related programming tasks.
+Core Requirements
+Your Python script should implement the following functionalities:
 
-   
-2. Identify the Most Frequently Accessed Endpoint
-The script extracts the endpoints (URLs or resource paths) accessed by clients from the log entries.
-It then identifies the endpoint with the highest number of accesses and displays it along with the access count.
-Example Output:
-Endpoint         Access Count
-/home                   5
-/about                  5
-/dashboard              3
-/contact                2
-/profile                2
+1) **Count Requests per IP Address:**
+Parse the provided log file to extract all IP addresses.
+Calculate the number of requests made by each IP address.
+Sort and display the results in descending order of request counts.
+Example output:
+IP Address           Request Count
+192.168.1.1          234
+203.0.113.5          187
+10.0.0.2             92
 
-3. Detect Suspicious Activity
-The script detects potential brute force login attempts based on failed login entries in the log file. It looks for HTTP 401 status codes or specific failure messages like "Invalid credentials".
-IP addresses with failed login attempts exceeding a configurable threshold (default: 10 attempts) are flagged as suspicious.
-Example Output:
-Suspicious Activity Detected:
-IP Address Failed Login Attempts
-No suspicious activity detected.
+2) **Identify the Most Frequently Accessed Endpoint**:
+Extract the endpoints (e.g., URLs or resource paths) from the log file.
+Identify the endpoint accessed the highest number of times.
+Provide the endpoint name and its access count.
+Example output:
+Most Frequently Accessed Endpoint:
+/home (Accessed 403 times)
 
-4. Output Results
-The script displays the results in a clean and organized format on the terminal, making it easy to read and analyze.
-The results are saved to a CSV file (log_analysis_results.csv), which includes:
-Requests per IP: Columns - IP Address, Request Count
-Most Accessed Endpoint: Columns - Endpoint, Access Count
-Suspicious Activity: Columns - IP Address, Failed Login Count
+3. **Detect Suspicious Activity**:
+    - Identify potential brute force login attempts by:
+        - Searching for log entries with failed login attempts (e.g., HTTP status code `401` or a specific failure message like "Invalid credentials").
+        - Flagging IP addresses with failed login attempts exceeding a configurable threshold (default: 10 attempts).
+    - Display the flagged IP addresses and their failed login counts.
+    - Example output:
+        
+        ```less
+        Suspicious Activity Detected:
+        IP Address           Failed Login Attempts
+        192.168.1.100        56
+        203.0.113.34         12
+        ```
+        
+4. **Output Results**:
+    - Display the results in a clear, organized format in the terminal.
+    - Save the results to a CSV file named `log_analysis_results.csv` with the following structure:
+        - **Requests per IP**: Columns: `IP Address`, `Request Count`
+        - **Most Accessed Endpoint**: Columns: `Endpoint`, `Access Count`
+        - **Suspicious Activity**: Columns: `IP Address`, `Failed Login Count`
 
+### **Sample Log File**
 
-
-Clone this repository to your local machine:
-Usage
-To run the script, follow these steps:
-Place the log file you want to analyze in the same directory as the script or specify the full path to the log file in the script.
-Run the script using Python:.
-after processing the log file, the script will output:
-
-Request counts per IP address
-
-Most frequently accessed endpoint
-
-Suspicious IPs with failed login attempts
-Additionally, the results will be saved to a CSV file named log_analysis_results.csv in the same directory.
-Configuration
-Threshold for Suspicious Activity:
-The script flags IP addresses with failed login attempts above a configurable threshold (default: 10).
-You can modify the threshold by changing the threshold parameter in the script.
-
-
-Sample Log File Format
-The log file should follow a format similar to this:
+Here is a sample log file you will use for this assignment. Save it as `sample.log`:
 192.168.1.1 - - [03/Dec/2024:10:12:34 +0000] "GET /home HTTP/1.1" 200 512
 203.0.113.5 - - [03/Dec/2024:10:12:35 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
 10.0.0.2 - - [03/Dec/2024:10:12:36 +0000] "GET /about HTTP/1.1" 200 256
@@ -73,5 +55,30 @@ The log file should follow a format similar to this:
 198.51.100.23 - - [03/Dec/2024:10:12:38 +0000] "POST /register HTTP/1.1" 200 128
 203.0.113.5 - - [03/Dec/2024:10:12:39 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
 192.168.1.100 - - [03/Dec/2024:10:12:40 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
-The script will correctly process log entries with IP addresses, HTTP status codes, and resource paths to perform its analysis.
-
+10.0.0.2 - - [03/Dec/2024:10:12:41 +0000] "GET /dashboard HTTP/1.1" 200 1024
+198.51.100.23 - - [03/Dec/2024:10:12:42 +0000] "GET /about HTTP/1.1" 200 256
+192.168.1.1 - - [03/Dec/2024:10:12:43 +0000] "GET /dashboard HTTP/1.1" 200 1024
+203.0.113.5 - - [03/Dec/2024:10:12:44 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+203.0.113.5 - - [03/Dec/2024:10:12:45 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+192.168.1.100 - - [03/Dec/2024:10:12:46 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+10.0.0.2 - - [03/Dec/2024:10:12:47 +0000] "GET /profile HTTP/1.1" 200 768
+192.168.1.1 - - [03/Dec/2024:10:12:48 +0000] "GET /home HTTP/1.1" 200 512
+198.51.100.23 - - [03/Dec/2024:10:12:49 +0000] "POST /feedback HTTP/1.1" 200 128
+203.0.113.5 - - [03/Dec/2024:10:12:50 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+192.168.1.1 - - [03/Dec/2024:10:12:51 +0000] "GET /home HTTP/1.1" 200 512
+198.51.100.23 - - [03/Dec/2024:10:12:52 +0000] "GET /about HTTP/1.1" 200 256
+203.0.113.5 - - [03/Dec/2024:10:12:53 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+192.168.1.100 - - [03/Dec/2024:10:12:54 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+10.0.0.2 - - [03/Dec/2024:10:12:55 +0000] "GET /contact HTTP/1.1" 200 512
+198.51.100.23 - - [03/Dec/2024:10:12:56 +0000] "GET /home HTTP/1.1" 200 512
+192.168.1.100 - - [03/Dec/2024:10:12:57 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+203.0.113.5 - - [03/Dec/2024:10:12:58 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+10.0.0.2 - - [03/Dec/2024:10:12:59 +0000] "GET /dashboard HTTP/1.1" 200 1024
+192.168.1.1 - - [03/Dec/2024:10:13:00 +0000] "GET /about HTTP/1.1" 200 256
+198.51.100.23 - - [03/Dec/2024:10:13:01 +0000] "POST /register HTTP/1.1" 200 128
+203.0.113.5 - - [03/Dec/2024:10:13:02 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+192.168.1.100 - - [03/Dec/2024:10:13:03 +0000] "POST /login HTTP/1.1" 401 128 "Invalid credentials"
+10.0.0.2 - - [03/Dec/2024:10:13:04 +0000] "GET /profile HTTP/1.1" 200 768
+198.51.100.23 - - [03/Dec/2024:10:13:05 +0000] "GET /about HTTP/1.1" 200 256
+192.168.1.1 - - [03/Dec/2024:10:13:06 +0000] "GET /home HTTP/1.1" 200 512
+198.51.100.23 - - [03/Dec/2024:10:13:07 +0000] "POST /feedback HTTP/1.1" 200 128
